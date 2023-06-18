@@ -16,6 +16,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTranformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 
 
 @dataclass # use a decorator
@@ -70,4 +73,7 @@ if __name__ == "__main__":
 
     # to check data tranformation code is working or not after creating it
     data_tranformation = DataTranformation()
-    data_tranformation.initiate_data_transformation(train_data, test_data)
+    train_arr, test_arr, _ = data_tranformation.initiate_data_transformation(train_data, test_data)
+
+    modelTrainer = ModelTrainer()
+    print(modelTrainer.initiate_model_trainer(train_arr, test_arr))
