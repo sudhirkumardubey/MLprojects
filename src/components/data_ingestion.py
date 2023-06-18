@@ -11,6 +11,13 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 
+
+# to check if everything is working or not
+from src.components.data_transformation import DataTranformation
+from src.components.data_transformation import DataTransformationConfig
+
+
+
 @dataclass # use a decorator
 class DataIngerstionConfig:
     train_data_path: str = os.path.join('artifacts', "train.csv")
@@ -54,9 +61,13 @@ class DataIngestion:
             raise CustomException(e, sys)
 
 
-# # sanity check:
+# sanity check:
 
-# if __name__ == "__main__":
-#     # logging.info("Devide by zero")
-#     obj = DataIngestion()
-#     obj.initiate_data_ingestion()
+if __name__ == "__main__":
+    # logging.info("Devide by zero")
+    obj = DataIngestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    # to check data tranformation code is working or not after creating it
+    data_tranformation = DataTranformation()
+    data_tranformation.initiate_data_transformation(train_data, test_data)
